@@ -1,0 +1,80 @@
+<!-- custom announcement-bar github:dhanush-git -->
+{% style %}
+.marmeto-announcement-bar{
+    display: flex;
+    justify-content: center;
+    background: {{ section.settings.bg__color }}; 
+}
+.marmeto-announcement-bar a{
+    text-decoration: none;
+}
+.marmeto-announcement-bar__text{
+    text-align: center;
+    padding: 5px 0px;
+    color: {{ section.settings.text__color }};
+}
+.marmeto-announcement-bar__text p{
+    margin: 0px;
+}
+{% endstyle %}
+<div class="marmeto-announcement-bar">
+    {% if section.settings.text != nil %}
+        {%- capture TEXT -%}
+            <div class="marmeto-announcement-bar__text">
+                {{ section.settings.text }}
+            </div>
+        {%- endcapture -%}
+
+        {% if section.settings.text__link != nil %}
+            <a href="http://">
+                {{ TEXT }}
+            </a>
+        {% else %}
+            {{ TEXT }}
+        {% endif %}
+    {% endif %}
+</div>
+
+{% schema %}
+{
+    "name":"Annoucement bar",
+    "settings":[
+        {
+            "type": "header",
+            "content": "TEXT SETTINGS"
+        },
+        {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Annoucement Bar | free shipping on orders</p>"
+        },
+        {
+            "type": "color",
+            "id": "text__color",
+            "label": "Color",
+            "default": "#ffffff"
+        },
+        {
+            "type": "url",
+            "id": "text__link",
+            "label": "URL"
+        },
+        {
+            "type": "header",
+            "content": "BACKGROND SETTINGS"
+        },
+        {
+            "type": "color",
+            "id": "bg__color",
+            "label": "Color",
+            "default": "#000000"
+        }
+    ],
+    "presets":[
+        {
+            "name":"Marmeto annoucement bar"
+        }
+    ]
+}
+{% endschema %}
